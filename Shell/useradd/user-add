@@ -1,0 +1,91 @@
+#!/bin/bash
+
+cd $(dirname $0)
+ 
+USER_NAME=$(whoami)
+
+length=`cat hostlist |head -1`
+
+username=`echo $2`
+
+
+FILE_NAME="~/user_add/hostlist"
+
+if [ -z "${length}" ]
+
+
+   then
+   echo "host list file length 0"
+   exit 2
+
+fi
+
+ifusername (){
+
+  if [ -z "$username"  ];
+
+	then
+	echo "Plese input \$2  username  "
+	exit 2
+  fi
+}
+
+ifre (){
+	
+  if [  $? != "0"  ];
+
+	then
+
+	echo $i  $username  add Failed!
+   else
+	 echo $i  $username  add OK
+  fi
+}
+case $1 in
+
+sudo)
+
+ifusername
+
+for i in `cat  /home/${USER_NAME}/user_add/hostlist`
+	do	
+	for m in `cat  /home/${USER_NAME}/user_add/namelist`
+        	do
+        		ssh -i ~/.ssh/$USER_NAME.rsa -l $USER_NAME -t  $i "sudo  sh /opt/soft/monitor/core/cron/adduser_and_sudo.sh $m" 
+			sleep 5
+		done
+	done
+;;
+
+add)
+
+ifusername
+
+for i in `cat /home/${USER_NAME}/user_add/hostlist`
+	do
+	for m in `cat  /home/${USER_NAME}/user_add/namelist`
+        	do
+        		/usr/bin/tsocks  ssh -i ~/.ssh/$USER_NAME.rsa -l $USER_NAME -t  $i "sudo  sh  /opt/soft/monitor/core/scripts/contrarun/tmpuseradd.sh $m"
+
+		done
+	done
+;;
+
+del)
+
+ifusername
+
+for i in `cat  /home/${USER_NAME}/user_add/hostlist`
+        do
+        for m in `cat  /home/${USER_NAME}/user_add/namelist`
+                do
+                        /usr/bin/tsocks  ssh -i ~/.ssh/$USER_NAME.rsa -l $USER_NAME -t  $i "sudo  userdel $m"
+                done
+        done
+;;
+
+*)
+
+echo -e "\033[44;37;5m Please enter the correct parameters \n\$1  sudo  --Create user add and Sudo \n\$1Create add user  \033[0m ";;
+
+esac

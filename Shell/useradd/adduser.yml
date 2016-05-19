@@ -1,0 +1,12 @@
+---
+- hosts: all
+  remote_user: zhiwu88
+  sudo: yes
+  
+  tasks:
+  - name: Add user shell script
+    #shell: sh /tmp/getvar.sh {{ item }}
+    shell: sh /opt/soft/monitor/core/scripts/contrarun/tmpuseradd.sh {{ item }}
+    with_lines: 
+       - echo -n "{{ lookup('file','namelist')  }}"
+...
