@@ -1,8 +1,8 @@
 ---
 - hosts: all
-  remote_user: jiangzhiwu
+  remote_user: zhiwu88
   sudo: yes
 
   tasks:
   - name: copy file to remote dir 
-    copy: src=/home/jiangzhiwu/ansible/file/lvs_tun_vip.sh dest=/opt/sbin/lvs_tun_vip.sh
+    copy: src=/home/zhiwu88/ansible/file/lvs_tun_vip.sh dest=/opt/sbin/lvs_tun_vip.sh

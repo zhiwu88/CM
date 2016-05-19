@@ -1,16 +1,16 @@
 ---
 - hosts: all
-  remote_user: jiangzhiwu
+  remote_user: zhiwu88
   sudo: yes
 
   tasks:
   - name: copy tar.gz file to remote and unarchive
-    unarchive: src=/home/jiangzhiwu/tmpfile/opt/{{ item }} dest=/opt copy=yes
+    unarchive: src=/home/zhiwu88/tmpfile/opt/{{ item }} dest=/opt copy=yes
     with_lines:
-       - ls -1 /home/jiangzhiwu/tmpfile/opt/
+       - ls -1 /home/zhiwu88/tmpfile/opt/
  
 
   - name: copy tar.gz file to remote and unarchive 2
-    unarchive: src=/home/jiangzhiwu/tmpfile/data/{{ item }} dest=/data copy=yes
+    unarchive: src=/home/zhiwu88/tmpfile/data/{{ item }} dest=/data copy=yes
     with_lines:
-       - ls -1 /home/jiangzhiwu/tmpfile/data/
+       - ls -1 /home/zhiwu88/tmpfile/data/
