@@ -1,0 +1,13 @@
+1.copy file.
+tsocks ansible-playbook -i hostlist copy.yml -v
+
+2.exec command with sudo. 
+tsocks ansible all -i hostlist --sudo -a "/bin/sh /opt/sbin/lvs_tun_vip.sh"
+
+3.show ip addr
+tsocks ansible all -i hostlist -m shell -a "/sbin/ip addr|grep inet"
+
+
+
+
+
