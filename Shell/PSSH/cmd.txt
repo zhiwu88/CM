@@ -1,0 +1,7 @@
+1.查看cpu核数
+pssh -P -h hostlist 'cat /proc/cpuinfo |grep processor |wc -l'
+
+2.MD5对比文件
+pssh -P -h hostlist 'md5sum /etc/rc.local'
+
+
